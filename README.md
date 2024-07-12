@@ -27,3 +27,5 @@ script.eventSource.on(script.event_types.MESSAGE_SENT, (data) => {
     extensions.toastr.success("Message sent !")
 })
 ```
+
+<img width="513" alt="Screenshot 2024-07-12 at 23 23 55" src="https://github.com/user-attachments/assets/54fbdfe7-a111-4571-8eb5-e58deb78d547">
