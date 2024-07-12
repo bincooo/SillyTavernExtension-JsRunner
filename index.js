@@ -7,12 +7,13 @@ import { extension_settings, getContext, loadExtensionSettings, renderExtensionT
 //You'll likely need to import some other functions from the main script
 import { callPopup, saveSettingsDebounced, eventSource, event_types } from "../../../../script.js";
 
-import { ARGUMENT_TYPE, SlashCommandArgument, SlashCommandNamedArgument } from '../../slash-commands/SlashCommandArgument.js';
-import { SlashCommandParser } from '../../slash-commands/SlashCommandParser.js';
+import { ARGUMENT_TYPE, SlashCommandArgument, SlashCommandNamedArgument } from '../../../slash-commands/SlashCommandArgument.js';
+import { SlashCommandParser } from '../../../slash-commands/SlashCommandParser.js';
 
 // Keep track of where your extension is located, name should match repo name
-const extensionName = "js-runner";
+const extensionName = "SillyTavernExtension-JsRunner";
 const extensionFolderPath = `scripts/extensions/third-party/${extensionName}`;
+const templatePath = `third-party/${extensionName}`
 const defaultSettings = {};
 
  
@@ -30,7 +31,7 @@ async function loadSettings() {
   if (javascripts) {
     for (const index in javascripts) {
       const j = javascripts[index]
-      const blockHtml = $(await renderExtensionTemplateAsync('third-party/js-runner', 'block'));
+      const blockHtml = $(await renderExtensionTemplateAsync(templatePath, 'block'));
       blockHtml.find(".runner_script_name").text(javascripts[index].name);
       if (!j.enabled) {
         blockHtml.find(".enabled_button i").removeClass("fa-toggle-on");
@@ -64,7 +65,7 @@ async function loadSettings() {
 async function onAddButtonClick() {
   // You can do whatever you want here
   // Let's make a popup appear with the checked setting
-  const editorHtml = $(await renderExtensionTemplateAsync('third-party/js-runner', 'edit'));
+  const editorHtml = $(await renderExtensionTemplateAsync(templatePath, 'edit'));
   const popupResult = await callPopup(editorHtml, 'confirm', undefined, { okButton: 'Save' });
   if (popupResult) {
     extension_settings[extensionName].javascripts = extension_settings[extensionName].javascripts || [];
@@ -82,7 +83,7 @@ async function onAddButtonClick() {
 async function onEditButtonClick(index, data) {
     // You can do whatever you want here
     // Let's make a popup appear with the checked setting
-    const editorHtml = $(await renderExtensionTemplateAsync('third-party/js-runner', 'edit'));
+    const editorHtml = $(await renderExtensionTemplateAsync(templatePath, 'edit'));
     editorHtml.find('.runner_script_name').val(data.name);
     editorHtml.find('.runner_script_value').val(data.javascript);
     const popupResult = await callPopup(editorHtml, 'confirm', undefined, { okButton: 'Save' });
@@ -124,7 +125,7 @@ async function javascriptEval(name, javascript) {
 // This function is called when the extension is loaded
 jQuery(async () => {
   // This is an example of loading HTML from a file
-  const settingsHtml = await $.get(`${extensionFolderPath}/panel.html`);
+  const settingsHtml = $(await renderExtensionTemplateAsync(templatePath, 'panel'));
 
   // Append settingsHtml to extensions_settings
   // extension_settings and extensions_settings2 are the left and right columns of the settings menu
