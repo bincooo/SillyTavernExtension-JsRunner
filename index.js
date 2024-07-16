@@ -66,7 +66,7 @@ async function onAddButtonClick() {
   // You can do whatever you want here
   // Let's make a popup appear with the checked setting
   const editorHtml = $(await renderExtensionTemplateAsync(templatePath, 'edit'));
-  const popupResult = await callPopup(editorHtml, 'confirm', undefined, { okButton: 'Save' });
+  const popupResult = await script.callPopup(editorHtml, 'confirm', undefined, { okButton: 'Save' });
   if (popupResult) {
     extension_settings[extensionName].javascripts = extension_settings[extensionName].javascripts || [];
     extension_settings[extensionName].javascripts.push({
@@ -86,7 +86,7 @@ async function onEditButtonClick(index, data) {
     const editorHtml = $(await renderExtensionTemplateAsync(templatePath, 'edit'));
     editorHtml.find('.runner_script_name').val(data.name);
     editorHtml.find('.runner_script_value').val(data.javascript);
-    const popupResult = await callPopup(editorHtml, 'confirm', undefined, { okButton: 'Save' });
+    const popupResult = await script.callPopup(editorHtml, 'confirm', undefined, { okButton: 'Save' });
     if (popupResult) {
       extension_settings[extensionName].javascripts = extension_settings[extensionName].javascripts || [];
       data = {...data,
