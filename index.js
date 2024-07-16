@@ -2,10 +2,10 @@
 // The following are examples of some basic extension functionality
 
 //You'll likely need to import extension_settings, getContext, and loadExtensionSettings from extensions.js
-import { extension_settings, getContext, loadExtensionSettings, renderExtensionTemplateAsync, getApiUrl, doExtrasFetch } from "../../../extensions.js";
+import { extension_settings, getContext, renderExtensionTemplateAsync, getApiUrl, doExtrasFetch } from "../../../extensions.js";
 
 //You'll likely need to import some other functions from the main script
-import { callPopup, saveSettingsDebounced, eventSource, event_types } from "../../../../script.js";
+import * as script from "../../../../script.js";
 
 import { ARGUMENT_TYPE, SlashCommandArgument, SlashCommandNamedArgument } from '../../../slash-commands/SlashCommandArgument.js';
 import { SlashCommandParser } from '../../../slash-commands/SlashCommandParser.js';
@@ -102,9 +102,6 @@ async function onEditButtonClick(index, data) {
 
 async function javascriptEval(name, javascript) {
     try {
-        const script = {
-            eventSource, event_types
-        }
         const extensions = {
             getContext, toastr, doExtrasFetch, getApiUrl
         }
