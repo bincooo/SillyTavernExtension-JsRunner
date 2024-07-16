@@ -42,7 +42,7 @@ async function loadSettings() {
 
       blockHtml.find(".enabled_button").on("click", async () => {
         extension_settings[extensionName].javascripts[index].enabled = !j.enabled;
-        saveSettingsDebounced();
+        script.saveSettingsDebounced();
         await loadSettings();
       });
       blockHtml.find(".edit_button").on("click", async () => {
@@ -50,7 +50,7 @@ async function loadSettings() {
       });
       blockHtml.find(".del_button").on("click", async () => {
         extension_settings[extensionName].javascripts.splice(index, 1);
-        saveSettingsDebounced();
+        script.saveSettingsDebounced();
         await loadSettings();
       });
 
@@ -75,7 +75,7 @@ async function onAddButtonClick() {
         javascript: editorHtml.find('.runner_script_value').val(),
     })
     toastr.info("add success!");
-    saveSettingsDebounced();
+    script.saveSettingsDebounced();
     await loadSettings();
   }
 }
@@ -95,7 +95,7 @@ async function onEditButtonClick(index, data) {
       }
       extension_settings[extensionName].javascripts[index] = data;
       toastr.info("edit success!");
-      saveSettingsDebounced();
+      script.saveSettingsDebounced();
       await loadSettings();
     }
 }
