@@ -7,6 +7,8 @@ import { extension_settings, getContext, renderExtensionTemplateAsync, getApiUrl
 //You'll likely need to import some other functions from the main script
 import * as script from "../../../../script.js";
 
+import { debounce, delay } from "../../../../scripts/utils.js";
+
 import { ARGUMENT_TYPE, SlashCommandArgument, SlashCommandNamedArgument } from '../../../slash-commands/SlashCommandArgument.js';
 import { SlashCommandParser } from '../../../slash-commands/SlashCommandParser.js';
 
@@ -103,7 +105,7 @@ async function onEditButtonClick(index, data) {
 async function javascriptEval(name, javascript) {
     try {
         const extensions = {
-            getContext, toastr, doExtrasFetch, getApiUrl
+            getContext, toastr, doExtrasFetch, getApiUrl, debounce, delay,
         }
         const command = {
             SlashCommandParser,
