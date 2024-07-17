@@ -2,7 +2,7 @@
 // The following are examples of some basic extension functionality
 
 //You'll likely need to import extension_settings, getContext, and loadExtensionSettings from extensions.js
-import { extension_settings, getContext, renderExtensionTemplateAsync, getApiUrl, doExtrasFetch } from "../../../extensions.js";
+import { extension_settings, getContext, writeExtensionField, renderExtensionTemplateAsync, getApiUrl, doExtrasFetch } from "../../../extensions.js";
 
 //You'll likely need to import some other functions from the main script
 import * as script from "../../../../script.js";
@@ -115,6 +115,7 @@ async function javascriptEval(blockHtml, name, javascript) {
     try {
         const extensions = {
             getContext, toastr, doExtrasFetch, getApiUrl, debounce, delay, setting,
+            writeExtensionField,
         }
         const command = {
             SlashCommandParser,
