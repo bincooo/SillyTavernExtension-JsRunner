@@ -57,7 +57,7 @@ async function loadSettings() {
       });
 
       if (j.enabled) {
-        await javascriptEval(j.name, j.javascript)
+        await javascriptEval(blockHtml, j.name, j.javascript)
       }
     }
   }
@@ -102,14 +102,23 @@ async function onEditButtonClick(index, data) {
     }
 }
 
-async function javascriptEval(name, javascript) {
+async function javascriptEval(blockHtml, name, javascript) {
+    const setting = () => {
+      blockHtml.find('.setting_button').show()
+      return {
+        on: (functionCall) => {
+          blockHtml.find('.setting_button').on('click', functionCall)
+        }
+      }
+    }
+
     try {
         const extensions = {
-            getContext, toastr, doExtrasFetch, getApiUrl, debounce, delay,
+            getContext, toastr, doExtrasFetch, getApiUrl, debounce, delay, setting,
         }
         const command = {
             SlashCommandParser,
-            ARGUMENT_TYPE, SlashCommandArgument, SlashCommandNamedArgument
+            ARGUMENT_TYPE, SlashCommandArgument, SlashCommandNamedArgument,
         }
 
         // 事件代码需考虑注册事件和注销事件的处理！
