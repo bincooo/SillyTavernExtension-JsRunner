@@ -22,6 +22,6 @@
     line-height: 38px;
 }
 
-#jsoneditor > .jsoneditor, #codeEditor {
+body.noShadows-1 * {
     text-shadow: none !important;
 }
