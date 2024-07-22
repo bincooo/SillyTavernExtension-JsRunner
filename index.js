@@ -148,7 +148,7 @@ function initCodeEditer() {
     $('dialog[class^=popup] .popup-content > div').append('<pre id="codeEditor" class="height100p wide100p"><textarea class="height100p wide100p"></textarea></pre>');
 
     //获取控件   id ：codeEditor
-    editor = ace.edit("codeEditer");
+    editor = ace.edit("codeEditor");
     //设置风格和语言（更多风格和语言，请到github上相应目录查看）
     theme = "monokai";
     //theme = "terminal";
