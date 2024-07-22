@@ -77,7 +77,7 @@ async function loadSettings() {
 async function onAddButtonClick() {
   let codeEditor = () => {
     $('.editor_maximize').on('click', function () {
-      setTimeout(initCodeEditer, 100);
+      setTimeout(initCodeEditor, 100);
     });
   }
   // You can do whatever you want here
@@ -102,7 +102,7 @@ async function onAddButtonClick() {
 async function onEditButtonClick(index, data) {
   let codeEditor = () => {
     $('.editor_maximize').on('click', function () {
-      setTimeout(initCodeEditer, 100);
+      setTimeout(initCodeEditor, 100);
     });
   }
   // You can do whatever you want here
@@ -136,21 +136,9 @@ async function javascriptEval(blockHtml, name, javascript) {
       }
     }
 
-    let codeEditor = () => {
-      $('.editor_maximize').on('click', function () {
-        setTimeout(initCodeEditer, 100);
-      });
-    }
-
-    let jsonEditor = () => {
-      $('.editor_maximize').on('click', function () {
-        setTimeout(initJsonEditer, 100);
-      });
-    }
-
     try {
         const extensions = {
-            getContext, toastr, doExtrasFetch, getApiUrl, debounce, delay, setting, codeEditor, jsonEditor,
+            getContext, toastr, doExtrasFetch, getApiUrl, debounce, delay, setting, initCodeEditor, initJsonEditor,
             writeExtensionField,
         }
         const command = {
@@ -167,7 +155,7 @@ async function javascriptEval(blockHtml, name, javascript) {
     }
 }
 
-async function initJsonEditer() {
+async function initJsonEditor() {
   const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
   const content = textarea.val();
   textarea.css('display', 'none');
@@ -187,7 +175,7 @@ async function initJsonEditer() {
   });
 }
 
-async function initCodeEditer() {
+async function initCodeEditor() {
   const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
   const content = textarea.val();
   // textarea.css('display', 'none');
