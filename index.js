@@ -143,10 +143,10 @@ async function javascriptEval(blockHtml, name, javascript) {
 
 async function initCodeEditer() {
     const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
+    const content = textarea.val();
     // textarea.css('display', 'none');
 
     $('dialog[class^=popup] .popup-content > div').attr('id', 'codeEditor');
-    await delay(500);
 
     //获取控件   id ：codeEditor
     const editor = ace.edit("codeEditor");
@@ -171,6 +171,7 @@ async function initCodeEditer() {
         enableLiveAutocompletion: true,
     });
 
+    editor.setValue(content);
     editor.on('change', () => {
       textarea.val(editor.getValue());
       textarea[0].dispatchEvent(new Event('input'));
