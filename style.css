@@ -21,3 +21,7 @@
 .runner-script_block .runner-extension_check {
     line-height: 38px;
 }
+
+#jsoneditor > .jsoneditor, #codeEditor {
+    text-shadow: none !important;
+}

@@ -21,6 +21,16 @@ const defaultSettings = {};
  
 // Loads the extension settings if they exist, otherwise initializes them to the defaults.
 async function loadSettings() {
+  if ($('#jed').length == 0) {
+    $('body').append('<link href="//cdn.jsdelivr.net/npm/jsoneditor@10.1.0/dist/jsoneditor.min.css" rel="stylesheet">');
+    $('body').append('<script id="jed" src="//cdn.jsdelivr.net/npm/jsoneditor@10.1.0/dist/jsoneditor.min.js"></script>');
+  }
+
+  if ($('#ace').length == 0) {
+    $('body').append('<script id="ace" src="//cdn.bootcss.com/ace/1.2.4/ace.js"></script>');
+    $('body').append('<script src="//cdn.bootcss.com/ace/1.2.4/ext-language_tools.js"></script>');
+  }
+
   $(".runner-extension-settings .runner-extension_block").empty();
   //Create the settings if they don't exist
   extension_settings[extensionName] = extension_settings[extensionName] || {};
@@ -158,11 +168,6 @@ async function javascriptEval(blockHtml, name, javascript) {
 }
 
 async function initJsonEditer() {
-  if ($('#jed').length == 0) {
-    $('body').append('<link href="//cdn.jsdelivr.net/npm/jsoneditor@10.1.0/dist/jsoneditor.min.css" rel="stylesheet">');
-    $('body').append('<script id="jed" src="//cdn.jsdelivr.net/npm/jsoneditor@10.1.0/dist/jsoneditor.min.js"></script>');
-  }
-
   const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
   const content = textarea.val();
   textarea.css('display', 'none');
@@ -179,11 +184,6 @@ async function initJsonEditer() {
 }
 
 async function initCodeEditer() {
-  if ($('#ace').length == 0) {
-    $('body').append('<script id="ace" src="//cdn.bootcss.com/ace/1.2.4/ace.js"></script>');
-    $('body').append('<script src="//cdn.bootcss.com/ace/1.2.4/ext-language_tools.js"></script>');
-  }
-
   const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
   const content = textarea.val();
   // textarea.css('display', 'none');
