@@ -149,12 +149,12 @@ async function initCodeEditer() {
     await delay(500);
 
     //获取控件   id ：codeEditor
-    editor = ace.edit("codeEditor");
+    const editor = ace.edit("codeEditor");
     //设置风格和语言（更多风格和语言，请到github上相应目录查看）
-    theme = "monokai";
+    const theme = "monokai";
     //theme = "terminal";
     //语言
-    language = "javascript";
+    const language = "javascript";
     editor.setTheme("ace/theme/" + theme);
     editor.session.setMode("ace/mode/" + language);
     //字体大小
