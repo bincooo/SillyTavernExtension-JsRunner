@@ -21,10 +21,6 @@ const defaultSettings = {};
  
 // Loads the extension settings if they exist, otherwise initializes them to the defaults.
 async function loadSettings() {
-  if ($('#ace').length == 0) {
-    $('body').append('<script id="ace" src="//cdn.bootcss.com/ace/1.2.4/ace.js"></script>');
-    $('body').append('<script src="//cdn.bootcss.com/ace/1.2.4/ext-language_tools.js"></script>')
-  }
   $(".runner-extension-settings .runner-extension_block").empty();
   //Create the settings if they don't exist
   extension_settings[extensionName] = extension_settings[extensionName] || {};
@@ -136,9 +132,15 @@ async function javascriptEval(blockHtml, name, javascript) {
       });
     }
 
+    let jsonEditor = () => {
+      $('.editor_maximize').on('click', function () {
+        setTimeout(initJsonEditer, 100);
+      });
+    }
+
     try {
         const extensions = {
-            getContext, toastr, doExtrasFetch, getApiUrl, debounce, delay, setting, codeEditor,
+            getContext, toastr, doExtrasFetch, getApiUrl, debounce, delay, setting, codeEditor, jsonEditor,
             writeExtensionField,
         }
         const command = {
@@ -155,41 +157,67 @@ async function javascriptEval(blockHtml, name, javascript) {
     }
 }
 
-async function initCodeEditer() {
-    const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
-    const content = textarea.val();
-    // textarea.css('display', 'none');
+async function initJsonEditer() {
+  if ($('#jed').length == 0) {
+    $('body').append('<link href="//cdn.jsdelivr.net/npm/jsoneditor@10.1.0/dist/jsoneditor.min.css" rel="stylesheet">');
+    $('body').append('<script id="jed" src="//cdn.jsdelivr.net/npm/jsoneditor@10.1.0/dist/jsoneditor.min.js"></script>');
+  }
 
-    $('dialog[class^=popup] .popup-content > div').attr('id', 'codeEditor');
+  const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
+  const content = textarea.val();
+  textarea.css('display', 'none');
 
-    //获取控件   id ：codeEditor
-    const editor = ace.edit("codeEditor");
-    //设置风格和语言（更多风格和语言，请到github上相应目录查看）
-    const theme = "monokai";
-    //theme = "terminal";
-    //语言
-    const language = "javascript";
-    editor.setTheme("ace/theme/" + theme);
-    editor.session.setMode("ace/mode/" + language);
-    //字体大小
-    editor.setFontSize(15);
-    //设置只读（true时只读，用于展示代码）
-    editor.setReadOnly(false);
-    //自动换行,设置为off关闭
-    editor.setOption("wrap", "free");
-    //启用提示菜单
-    ace.require("ace/ext/language_tools");
-    editor.setOptions({
-        enableBasicAutocompletion: true,
-        enableSnippets: true,
-        enableLiveAutocompletion: true,
-    });
-
-    editor.setValue(content);
-    editor.on('change', () => {
-      textarea.val(editor.getValue());
+  $('dialog[class^=popup] .popup-content > div').append('<div id="jsoneditor" class="height100p wide100p"></div>');
+  const options = {
+    onChangeJSON: (data) => {
+      textarea.val(JSON.stringify(data, null, 4));
       textarea[0].dispatchEvent(new Event('input'));
-    });
+    },
+  }
+  const editor = new JSONEditor(document.querySelector('#jsoneditor'), options);
+  editor.set(JSON.parse(content??'{}'));
+}
+
+async function initCodeEditer() {
+  if ($('#ace').length == 0) {
+    $('body').append('<script id="ace" src="//cdn.bootcss.com/ace/1.2.4/ace.js"></script>');
+    $('body').append('<script src="//cdn.bootcss.com/ace/1.2.4/ext-language_tools.js"></script>');
+  }
+
+  const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
+  const content = textarea.val();
+  // textarea.css('display', 'none');
+
+  $('dialog[class^=popup] .popup-content > div').attr('id', 'codeEditor');
+
+  //获取控件   id ：codeEditor
+  const editor = ace.edit("codeEditor");
+  //设置风格和语言（更多风格和语言，请到github上相应目录查看）
+  const theme = "monokai";
+  //theme = "terminal";
+  //语言
+  const language = "javascript";
+  editor.setTheme("ace/theme/" + theme);
+  editor.session.setMode("ace/mode/" + language);
+  //字体大小
+  editor.setFontSize(15);
+  //设置只读（true时只读，用于展示代码）
+  editor.setReadOnly(false);
+  //自动换行,设置为off关闭
+  editor.setOption("wrap", "free");
+  //启用提示菜单
+  ace.require("ace/ext/language_tools");
+  editor.setOptions({
+      enableBasicAutocompletion: true,
+      enableSnippets: true,
+      enableLiveAutocompletion: true,
+  });
+
+  editor.setValue(content);
+  editor.on('change', () => {
+    textarea.val(editor.getValue());
+    textarea[0].dispatchEvent(new Event('input'));
+  });
 }
 
 // This function is called when the extension is loaded
