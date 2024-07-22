@@ -141,11 +141,12 @@ async function javascriptEval(blockHtml, name, javascript) {
     }
 }
 
-function initCodeEditer() {
+async function initCodeEditer() {
     const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
-    textarea.css('display', 'none');
+    // textarea.css('display', 'none');
 
-    $('dialog[class^=popup] .popup-content > div').append('<pre id="codeEditor" class="height100p wide100p"><textarea class="height100p wide100p"></textarea></pre>');
+    $('dialog[class^=popup] .popup-content > div').attr('id', 'codeEditor');
+    await delay(500);
 
     //获取控件   id ：codeEditor
     editor = ace.edit("codeEditor");
