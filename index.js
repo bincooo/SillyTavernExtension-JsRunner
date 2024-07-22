@@ -118,7 +118,7 @@ async function javascriptEval(blockHtml, name, javascript) {
 
     let codeEditor = () => {
       $('.editor_maximize').on('click', function () {
-        setTimeout(initCodeEditer, 500);
+        setTimeout(initCodeEditer, 100);
       });
     }
 
