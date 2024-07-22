@@ -182,7 +182,9 @@ async function initJsonEditer() {
   }
   const editor = new JSONEditor(document.querySelector('#jsoneditor'), options);
   editor.set(JSON.parse(content??'{}'));
-  $('dialog[class^=popup] .popup-content > div')
+  $('dialog[class^=popup] .popup-body .popup-button-ok').on('click', () => {
+    $('body').removeClass('noShadows-1');
+  });
 }
 
 async function initCodeEditer() {
@@ -190,9 +192,7 @@ async function initCodeEditer() {
   const content = textarea.val();
   // textarea.css('display', 'none');
 
-  $('dialog[class^=popup] .popup-body .popup-button-ok').on('click', () => {
-    $('body').removeClass('noShadows-1');
-  });
+  $('dialog[class^=popup] .popup-content > div').attr('id', 'codeEditor');
 
   //获取控件   id ：codeEditor
   const editor = ace.edit("codeEditor");
