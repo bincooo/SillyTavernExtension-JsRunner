@@ -25,3 +25,7 @@
 body.noShadows-1 * {
     text-shadow: none !important;
 }
+
+#jsonEditor .jsoneditor-tree {
+    background-color: #ebebeb;
+}
