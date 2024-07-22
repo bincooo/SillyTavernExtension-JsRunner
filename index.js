@@ -69,30 +69,42 @@ async function loadSettings() {
 
 // This function is called when the button is clicked
 async function onAddButtonClick() {
+  let codeEditor = () => {
+    $('.editor_maximize').on('click', function () {
+      setTimeout(initCodeEditer, 100);
+    });
+  }
   // You can do whatever you want here
   // Let's make a popup appear with the checked setting
   const editorHtml = $(await renderExtensionTemplateAsync(templatePath, 'edit'));
-  const popupResult = await script.callPopup(editorHtml, 'confirm', undefined, { okButton: 'Save' });
-  if (popupResult) {
-    extension_settings[extensionName].javascripts = extension_settings[extensionName].javascripts || [];
-    extension_settings[extensionName].javascripts.push({
-        enabled: true,
-        name: editorHtml.find('.runner_script_name').val(),
-        javascript: editorHtml.find('.runner_script_value').val(),
-    })
-    toastr.info("add success!");
-    script.saveSettingsDebounced();
-    await loadSettings();
-  }
+  script.callPopup(editorHtml, 'confirm', undefined, { okButton: 'Save' }).then(popupResult => {
+    if (popupResult) {
+      extension_settings[extensionName].javascripts = extension_settings[extensionName].javascripts || [];
+      extension_settings[extensionName].javascripts.push({
+          enabled: true,
+          name: editorHtml.find('.runner_script_name').val(),
+          javascript: editorHtml.find('.runner_script_value').val(),
+      })
+      toastr.info("add success!");
+      script.saveSettingsDebounced();
+      loadSettings();
+    }
+  });
+  codeEditor();
 }
 
 async function onEditButtonClick(index, data) {
-    // You can do whatever you want here
-    // Let's make a popup appear with the checked setting
-    const editorHtml = $(await renderExtensionTemplateAsync(templatePath, 'edit'));
-    editorHtml.find('.runner_script_name').val(data.name);
-    editorHtml.find('.runner_script_value').val(data.javascript);
-    const popupResult = await script.callPopup(editorHtml, 'confirm', undefined, { okButton: 'Save' });
+  let codeEditor = () => {
+    $('.editor_maximize').on('click', function () {
+      setTimeout(initCodeEditer, 100);
+    });
+  }
+  // You can do whatever you want here
+  // Let's make a popup appear with the checked setting
+  const editorHtml = $(await renderExtensionTemplateAsync(templatePath, 'edit'));
+  editorHtml.find('.runner_script_name').val(data.name);
+  editorHtml.find('.runner_script_value').val(data.javascript);
+  script.callPopup(editorHtml, 'confirm', undefined, { okButton: 'Save' }).then(popupResult => {
     if (popupResult) {
       extension_settings[extensionName].javascripts = extension_settings[extensionName].javascripts || [];
       data = {...data,
@@ -102,8 +114,10 @@ async function onEditButtonClick(index, data) {
       extension_settings[extensionName].javascripts[index] = data;
       toastr.info("edit success!");
       script.saveSettingsDebounced();
-      await loadSettings();
+      loadSettings();
     }
+  });
+  codeEditor();
 }
 
 async function javascriptEval(blockHtml, name, javascript) {
