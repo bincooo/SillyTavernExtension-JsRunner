@@ -4,8 +4,8 @@ This is a simple extension that allows you to run javascript code in the context
 
 可用参数如下:
 ```javascript
-event = {
-    eventSource, event_types
+script = {
+    eventSource, event_types, ...
 }
 
 extensions = {
