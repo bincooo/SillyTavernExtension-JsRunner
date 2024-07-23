@@ -20,7 +20,7 @@ command = {
 Examples:
 ```javascript
 script.eventSource.on(script.event_types.MESSAGE_SENT, (data) => {
-    const context = getContext();
+    const context = extensions.getContext();
     const message = context.chat[context.chat.length-1]
     message.mes = "(bilbilbil~) " + message.mes
     context.chat[context.chat.length-1] = message
