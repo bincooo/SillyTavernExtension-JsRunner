@@ -14,7 +14,7 @@ import { SlashCommandParser } from '../../../slash-commands/SlashCommandParser.j
 
 // Keep track of where your extension is located, name should match repo name
 const extensionName = "SillyTavernExtension-JsRunner";
-const extensionFolderPath = `scripts/extensions/third-party/${extensionName}`;
+const extensionFolderPath = `/scripts/extensions/third-party/${extensionName}`;
 const templatePath = `third-party/${extensionName}`
 const defaultSettings = {};
 
@@ -22,13 +22,13 @@ const defaultSettings = {};
 // Loads the extension settings if they exist, otherwise initializes them to the defaults.
 async function loadSettings() {
   if ($('#jed').length == 0) {
-    $('body').append('<link href="//cdn.jsdelivr.net/npm/jsoneditor@10.1.0/dist/jsoneditor.min.css" rel="stylesheet">');
-    $('body').append('<script id="jed" src="//cdn.jsdelivr.net/npm/jsoneditor@10.1.0/dist/jsoneditor.min.js"></script>');
+    $('body').append('<link href="' + extensionFolderPath + '/3rd/css/jsoneditor.min.css" rel="stylesheet">');
+    $('body').append('<script id="jed" src="' + extensionFolderPath + '/3rd/js/jsoneditor.min.js"></script>');
   }
 
   if ($('#ace').length == 0) {
-    $('body').append('<script id="ace" src="//cdn.bootcss.com/ace/1.2.4/ace.js"></script>');
-    $('body').append('<script src="//cdn.bootcss.com/ace/1.2.4/ext-language_tools.js"></script>');
+    $('body').append('<script id="ace" src="' + extensionFolderPath + '/3rd/js/ace/ace.js"></script>');
+    $('body').append('<script src="' + extensionFolderPath + '/3rd/js/ace/ext-language_tools.js"></script>');
   }
 
   $(".runner-extension-settings .runner-extension_block").empty();
