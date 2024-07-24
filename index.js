@@ -157,13 +157,12 @@ async function javascriptEval(blockHtml, name, javascript) {
 
 async function initJsonEditor() {
   const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
-  const content = textarea.val() ?? {};
+  const content = textarea.val() ?? '{}';
   textarea.css('display', 'none');
   $('body').addClass('noShadows-1');
 
   $('dialog[class^=popup] .popup-content > div').append('<div id="jsonEditor" class="height100p wide100p"></div>');
   const options = {
-    content,
     onChangeJSON: (data) => {
       textarea.val(JSON.stringify(data, null, 4));
       textarea[0].dispatchEvent(new Event('input'));
@@ -172,6 +171,7 @@ async function initJsonEditor() {
   const editor = new JSONEditor(document.querySelector('#jsonEditor'), options);
   $(editor.menu).find('.jsoneditor-sort').hide();
   $(editor.menu).find('.jsoneditor-transform').hide();
+  editor.setValue(content);
   $('dialog[class^=popup] .popup-body .popup-button-ok').on('click', () => {
     $('body').removeClass('noShadows-1');
   });
