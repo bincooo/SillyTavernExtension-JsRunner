@@ -4,8 +4,8 @@ This is a simple extension that allows you to run javascript code in the context
 
 可用参数如下:
 ```javascript
-event = {
-    eventSource, event_types
+script = {
+    eventSource, event_types, ...
 }
 
 extensions = {
@@ -20,7 +20,7 @@ command = {
 Examples:
 ```javascript
 script.eventSource.on(script.event_types.MESSAGE_SENT, (data) => {
-    const context = getContext();
+    const context = extensions.getContext();
     const message = context.chat[context.chat.length-1]
     message.mes = "(bilbilbil~) " + message.mes
     context.chat[context.chat.length-1] = message
