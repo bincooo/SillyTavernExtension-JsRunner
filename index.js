@@ -171,7 +171,7 @@ async function initJsonEditor() {
   const editor = new JSONEditor(document.querySelector('#jsonEditor'), options);
   $(editor.menu).find('.jsoneditor-sort').hide();
   $(editor.menu).find('.jsoneditor-transform').hide();
-  editor.setValue(content);
+  editor.set(JSON.parse(content));
   $('dialog[class^=popup] .popup-body .popup-button-ok').on('click', () => {
     $('body').removeClass('noShadows-1');
   });
