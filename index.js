@@ -128,7 +128,7 @@ async function onEditButtonClick(index, data) {
 
 async function javascriptEval(blockHtml, name, javascript) {
     const setting = () => {
-      blockHtml.find('.setting_button').show()
+      blockHtml.find('.setting_button').removeClass('disabled')
       return {
         on: (functionCall) => {
           blockHtml.find('.setting_button').on('click', functionCall)
