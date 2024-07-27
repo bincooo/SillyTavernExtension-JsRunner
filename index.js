@@ -9,6 +9,8 @@ import * as script from "../../../../script.js";
 
 import { debounce, delay } from "../../../../scripts/utils.js";
 
+import { playMessageSound } from '../../../../scripts/power-user.js';
+
 import { ARGUMENT_TYPE, SlashCommandArgument, SlashCommandNamedArgument } from '../../../slash-commands/SlashCommandArgument.js';
 import { SlashCommandParser } from '../../../slash-commands/SlashCommandParser.js';
 
@@ -139,7 +141,7 @@ async function javascriptEval(blockHtml, name, javascript) {
     try {
         const extensions = {
             getContext, toastr, doExtrasFetch, getApiUrl, debounce, delay, setting, initCodeEditor, initJsonEditor,
-            writeExtensionField,
+            writeExtensionField, playMessageSound,
         }
         const command = {
             SlashCommandParser,
