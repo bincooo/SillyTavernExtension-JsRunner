@@ -13,6 +13,7 @@ import { playMessageSound } from '../../../../scripts/power-user.js';
 
 import { ARGUMENT_TYPE, SlashCommandArgument, SlashCommandNamedArgument } from '../../../slash-commands/SlashCommandArgument.js';
 import { SlashCommandParser } from '../../../slash-commands/SlashCommandParser.js';
+import * as commands from '../../../slash-commands.js';
 
 // Keep track of where your extension is located, name should match repo name
 const extensionName = "SillyTavernExtension-JsRunner";
@@ -146,6 +147,7 @@ async function javascriptEval(blockHtml, name, javascript) {
         const command = {
             SlashCommandParser,
             ARGUMENT_TYPE, SlashCommandArgument, SlashCommandNamedArgument,
+            ...commands,
         }
 
         // 事件代码需考虑注册事件和注销事件的处理！
