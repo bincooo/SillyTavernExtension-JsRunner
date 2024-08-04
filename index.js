@@ -182,7 +182,7 @@ async function initJsonEditor() {
   });
 }
 
-async function initCodeEditor(language = "javascript", theme = "monokai") {
+async function initCodeEditor(language = "javascript", theme = "clouds_midnight") {
   const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
   const content = textarea.val();
   // textarea.css('display', 'none');
