@@ -182,7 +182,7 @@ async function initJsonEditor() {
   });
 }
 
-async function initCodeEditor() {
+async function initCodeEditor(language = "javascript") {
   const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
   const content = textarea.val();
   // textarea.css('display', 'none');
@@ -195,7 +195,6 @@ async function initCodeEditor() {
   const theme = "monokai";
   //theme = "terminal";
   //语言
-  const language = "javascript";
   editor.setTheme("ace/theme/" + theme);
   editor.session.setMode("ace/mode/" + language);
   //字体大小
