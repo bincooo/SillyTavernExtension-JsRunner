@@ -26,6 +26,10 @@ body.noShadows-1 * {
     text-shadow: none !important;
 }
 
+#codeEditor {
+    border: 1px solid var(--SmartThemeBorderColor);
+}
+
 #jsonEditor .jsoneditor-tree {
     background-color: #ebebeb;
 }
