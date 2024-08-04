@@ -182,7 +182,7 @@ async function initJsonEditor() {
   });
 }
 
-async function initCodeEditor(language = "javascript") {
+async function initCodeEditor(language = "javascript", theme = "monokai") {
   const textarea = $('dialog[class^=popup] .popup-content > div > textarea');
   const content = textarea.val();
   // textarea.css('display', 'none');
@@ -191,11 +191,9 @@ async function initCodeEditor(language = "javascript") {
 
   //获取控件   id ：codeEditor
   const editor = ace.edit("codeEditor");
-  //设置风格和语言（更多风格和语言，请到github上相应目录查看）
-  const theme = "monokai";
-  //theme = "terminal";
-  //语言
+  //主题
   editor.setTheme("ace/theme/" + theme);
+  //语言
   editor.session.setMode("ace/mode/" + language);
   //字体大小
   editor.setFontSize(15);
