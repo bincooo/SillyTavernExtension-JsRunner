@@ -14,7 +14,7 @@ import { playMessageSound } from '../../../../scripts/power-user.js';
 import { ARGUMENT_TYPE, SlashCommandArgument, SlashCommandNamedArgument } from '../../../slash-commands/SlashCommandArgument.js';
 import { SlashCommandParser } from '../../../slash-commands/SlashCommandParser.js';
 import { SlashCommandScope } from '../../../slash-commands/SlashCommandScope.js';
-import { SlashCommand } from '../../../SlashCommand.js';
+import { SlashCommand } from '../../../slash-commands/SlashCommand.js';
 import * as commands from '../../../slash-commands.js';
 
 // Keep track of where your extension is located, name should match repo name
