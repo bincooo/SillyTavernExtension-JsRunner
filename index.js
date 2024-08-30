@@ -49,7 +49,7 @@ async function loadSettings() {
     for (const index in javascripts) {
       const j = javascripts[index]
       const blockHtml = $(await renderExtensionTemplateAsync(templatePath, 'block'));
-      blockHtml.find(".runner_script_name").text(javascripts[index].name);
+      blockHtml.find(".runner_script_name").text(' ❖ ' + javascripts[index].name);
       if (!j.enabled) {
         blockHtml.find(".enabled_button i").removeClass("fa-toggle-on");
         blockHtml.find(".enabled_button i").addClass("fa-toggle-off");
