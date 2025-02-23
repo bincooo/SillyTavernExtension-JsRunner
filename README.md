@@ -29,3 +29,10 @@ script.eventSource.on(script.event_types.MESSAGE_SENT, (data) => {
 ```
 
 <img width="513" alt="Screenshot 2024-07-12 at 23 23 55" src="https://github.com/user-attachments/assets/54fbdfe7-a111-4571-8eb5-e58deb78d547">
+
+- [[DLC] - messages 上下文特化处理](https://github.com/bincooo/SillyTavernExtension-JsRunner/discussions/6)
+- [[DLC] - dall-e-3图文生成插件](https://github.com/bincooo/SillyTavernExtension-JsRunner/discussions/5)
+- [[DLC] - 添加command指令 message-render 、message-cancel](https://github.com/bincooo/SillyTavernExtension-JsRunner/discussions/4)
+- [[DLC] - 切换角色卡时同名世界书自动选中](https://github.com/bincooo/SillyTavernExtension-JsRunner/discussions/3)
+- [[DLC] - 状态栏选项快捷发送按钮](https://github.com/bincooo/SillyTavernExtension-JsRunner/discussions/2)
+- [[DLC] - 酒馆QR同名角色卡自动绑定](https://github.com/bincooo/SillyTavernExtension-JsRunner/discussions/1)
